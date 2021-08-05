@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
 const users = require("./routes/api/users");
+const tasks = require("./routes/api/tasks");
 
 
 require("dotenv").config();
@@ -25,12 +26,12 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors());
 app.use(express.json());
 
-
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
 app.use("/users", users);
+app.use("/tasks", tasks);
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
